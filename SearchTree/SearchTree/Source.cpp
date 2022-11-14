@@ -1,26 +1,70 @@
 #include<iostream>
 #include"BinarySearchTree.cpp"
+#include"Timer.h"
+#include<random>
 
 int main()
 {
-	BinarySearchTree<int, 15> test(15);
-	test.addValue(5);
-	test.addValue(2);
-	test.addValue(4);
-	test.addValue(11);
-	test.addValue(10);
-	test.addValue(8);
-	test.addValue(6);
-	test.addValue(23);
-	test.addValue(20);
-	test.addValue(25);
-	test.addValue(18);
-	test.addValue(21);
-	test.addValue(17);
-	test.addValue(19);
-	std::vector<int> sorted = test.sortAsc();
-	for (int i = 0; i < sorted.size(); i++)
+	BinarySearchTree<int, 601> test(600);
+	int values[600];
+	for (int i = 599; i >= 0; i--)
 	{
-		std::cout << sorted[i] << std::endl;
+		values[i] = std::rand();
 	}
+	test.addValues(values, 600);
+	std::cin.get();
+	std::vector<int> sorted;
+	{
+		Timer time;
+		sorted = test.sortAsc();
+	}
+	//std::cin.get();
+	//for (int i = 0; i < sorted.size(); i++)
+	//{
+	//	std::cout << sorted[i] << std::endl;
+	//}
+
+	std::cout << std::endl;
+	std::cin.get();
+	{
+		Timer t;
+		int count = 0;
+		int temp;
+		int whatIsChecking;
+		for (int i = 0; i < 599; i++) {
+			whatIsChecking = values[i];
+			for (int u = i + 1; u < 600; u++) {
+				count++;
+				if (whatIsChecking > values[u]) {
+					temp = values[u];
+					whatIsChecking = values[u];
+					values[u] = values[i];
+					values[i] = temp;
+				}
+			}
+		}
+			
+		
+	}
+	//for (int val : values)
+	//{
+	//	std::cout << val << std::endl;
+	//}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

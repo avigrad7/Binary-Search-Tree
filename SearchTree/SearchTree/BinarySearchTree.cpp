@@ -61,6 +61,13 @@ public:
 			indexOfAllData++;
 		}
 	}
+	void addValues(T* vals, int howManyValues)
+	{
+		for (int i = 0; i< howManyValues; i++)
+		{
+			addValue(vals[i]);
+		}
+	}
 	std::vector<T> sortAsc()
 	{
 		std::vector<T> test;

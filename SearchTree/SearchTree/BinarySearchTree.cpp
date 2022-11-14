@@ -73,8 +73,38 @@ public:
 		std::vector<T> test;
 		return(sortAsc(startingPoint, test));
 	}
+
+	T* search(T key)
+	{
+		return search(key, startingPoint);
+	}
+
 private:
-	std::vector<T> sortAsc(Node* startLocation, std::vector<T> allValues)
+
+	T* search(T key, Node* currentNode)
+	{
+		if (key < currentNode->value)
+		{
+			if (currentNode->less == nullptr)
+			{
+				return nullptr;
+			}
+			currentNode = currentNode->less;
+			return search(key, currentNode);
+		}
+		else if (key > currentNode->value)
+		{
+			if (currentNode->greater == nullptr)
+			{
+				return nullptr;
+			}
+			currentNode = currentNode->greater;
+			return search(key, currentNode);
+		}
+		return &currentNode->value;
+	}
+
+	std::vector<T> sortAsc(Node* startLocation, std::vector<T>& allValues)
 	{
 		Node* currentLocation = startLocation;
 		while (currentLocation->less != nullptr && !found(allValues, currentLocation->less->value))
@@ -138,7 +168,7 @@ private:
 		}
 		else
 		{
-			std::cout << "That is already a value" << std::endl;
+			//std::cout << "That is already a value" << std::endl;
 			return nullptr;
 		}
 	}

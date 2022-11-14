@@ -5,51 +5,41 @@
 
 int main()
 {
-	BinarySearchTree<int, 601> test(600);
-	int values[600];
-	for (int i = 599; i >= 0; i--)
+	srand(time(0));
+	BinarySearchTree<int, 5001> test(600);
+	int* allData = new int[5000];
+	for (int i = 0; i < 5000; i++)
 	{
-		values[i] = std::rand();
+		allData[i] = rand();
 	}
-	test.addValues(values, 600);
-	std::cin.get();
-	std::vector<int> sorted;
+	test.addValues(allData, 5000);
 	{
-		Timer time;
-		sorted = test.sortAsc();
+		Timer t;
+		test.sortAsc();
 	}
-	//std::cin.get();
-	//for (int i = 0; i < sorted.size(); i++)
-	//{
-	//	std::cout << sorted[i] << std::endl;
-	//}
 
-	std::cout << std::endl;
 	std::cin.get();
+
 	{
 		Timer t;
 		int count = 0;
 		int temp;
 		int whatIsChecking;
-		for (int i = 0; i < 599; i++) {
-			whatIsChecking = values[i];
-			for (int u = i + 1; u < 600; u++) {
+		for (int i = 0; i < 5000; i++) {
+			whatIsChecking = allData[i];
+			for (int u = i + 1; u < 5000; u++) {
 				count++;
-				if (whatIsChecking > values[u]) {
-					temp = values[u];
-					whatIsChecking = values[u];
-					values[u] = values[i];
-					values[i] = temp;
+				if (whatIsChecking > allData[u]) {
+					temp = allData[u];
+					whatIsChecking = allData[u];
+					allData[u] = allData[i];
+					allData[i] = temp;
 				}
 			}
 		}
-			
-		
+
+
 	}
-	//for (int val : values)
-	//{
-	//	std::cout << val << std::endl;
-	//}
 }
 
 

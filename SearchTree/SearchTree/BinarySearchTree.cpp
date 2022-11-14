@@ -31,6 +31,12 @@ private:
 	Node* startingPoint;
 	int indexOfAllData;
 public:
+	/**
+	* Creates a Binary Search Tree starting at a given Node
+	* 
+	* @constructor
+	* @param startingValue: The value to start a tree at
+	*/
 	BinarySearchTree(T startingValue)
 	{
 		allData[0] = Node(startingValue, nullptr);
@@ -38,6 +44,12 @@ public:
 		indexOfAllData = 1;
 	}
 public:
+	/**
+	* Adds Node to the tree
+	*
+	* @param val: The value to add to the tree
+	* @return None
+	*/
 	void addValue(T val)
 	{
 		if (indexOfAllData >= N)
@@ -61,6 +73,14 @@ public:
 			indexOfAllData++;
 		}
 	}
+	/**
+	* Adds Nodes to the tree
+	* 
+	* @param vals: An array of values to add
+	* @param howManyValues: The number of values to add
+	* 
+	* @return None
+	*/
 	void addValues(T* vals, int howManyValues)
 	{
 		for (int i = 0; i< howManyValues; i++)
@@ -68,19 +88,39 @@ public:
 			addValue(vals[i]);
 		}
 	}
+
+	/**
+	* A frontend function to sort the tree in ascending order
+	*
+	* @return A vector of all values in the tree sorted
+	*/
 	std::vector<T> sortAsc()
 	{
 		std::vector<T> test;
 		return(sortAsc(startingPoint, test));
 	}
 
+	/**
+	* A frontend function to search for a given value
+	*
+	* @param key: The value to look for
+	*
+	* @return A pointer to the value of the search or nullptr if it is not in the list
+	*/
 	T* search(T key)
 	{
 		return search(key, startingPoint);
 	}
 
 private:
-
+	/**
+	* A backend function to search for a given value
+	* 
+	* @param key: The value to look for
+	* @param currentNode: A pointer to the Node to look from
+	* 
+	* @return A pointer to the value of the search or nullptr if it is not in the list
+	*/
 	T* search(T key, Node* currentNode)
 	{
 		if (key < currentNode->value)
@@ -104,6 +144,14 @@ private:
 		return &currentNode->value;
 	}
 
+	/**
+	* A backend function to sort the tree in ascending order
+	* 
+	* @param startLocation: A pointer to the Node to start from
+	* @param allValues: A vector of all values to sort
+	* 
+	* @return A vector of all values in the tree sorted
+	*/
 	std::vector<T> sortAsc(Node* startLocation, std::vector<T>& allValues)
 	{
 		Node* currentLocation = startLocation;
@@ -130,7 +178,15 @@ private:
 		}
 	}
 
-	bool found(std::vector<T> allValues, T value)
+	/**
+	* Checks if a value is stored in the current array
+	* 
+	* @param allValues: A vector of all values to search
+	* @param value: The value to search for
+	* 
+	* @return true if the value was found and false if not
+	*/
+	bool found(std::vector<T>& allValues, T value)
 	{
 		for (int i = 0; i < allValues.size(); i++)
 		{
@@ -142,6 +198,14 @@ private:
 		return false;
 	}
 
+	/**
+	* Finds the location that a Node belongs
+	* 
+	* @param val: The value of the Node to find the location of
+	* @param startingLocation: A pointer to the Node to look from
+	* 
+	* @return A pointer to a Node to put the new Node 
+	*/
 	Node* findNodeLocation(T val, Node* startLocation)
 	{
 		if (val < startLocation->value)
@@ -168,7 +232,7 @@ private:
 		}
 		else
 		{
-			//std::cout << "That is already a value" << std::endl;
+			std::cout << "That is already a value" << std::endl;
 			return nullptr;
 		}
 	}

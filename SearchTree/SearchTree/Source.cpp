@@ -6,11 +6,22 @@
 int main()
 {
 	srand(time(0));
-	BinarySearchTree<int, 5001> test(600);
+	BinarySearchTree<int, 5001> test(5000);
 	int* allData = new int[5000];
 	for (int i = 0; i < 5000; i++)
 	{
-		allData[i] = rand();
+		allData[i] = i;
+	}
+	int what = 0;
+	int flip = 0;
+	int randNum = 0;
+	for (int i = 0; i < 5000; i++)
+	{
+		randNum = rand() % 5000;
+		what = allData[i];
+		flip = allData[randNum];
+		allData[i] = flip;
+		allData[randNum] = what;
 	}
 	test.addValues(allData, 5000);
 	{
